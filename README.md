@@ -26,7 +26,6 @@ This project demonstrates a complete student inquiry and staff follow-up workflo
 - **Backend**: Node.js & Express with security headers (`helmet`), strict JSON body limits (12kb), and IP rate limiting (`express-rate-limit`).
 - **Database**: SQLite with persistent storage in `data/enquiries.sqlite`. Leverages Node's built-in `node:sqlite` (Node 22+) with fallback to `better-sqlite3`, avoiding native C++ build tool dependencies.
 - **Security & Authentication**: Server-side authentication using `crypto.scrypt` password hashing, timing-safe equality checks, signed session tokens, `HttpOnly` and `SameSite=Strict` cookies, and custom header CSRF protection.
-- **Testing**: Built-in Node test runner (`node --test`) covering 28 automated unit, security, and end-to-end journey tests.
 
 ---
 
@@ -72,24 +71,7 @@ This project demonstrates a complete student inquiry and staff follow-up workflo
 
 ---
 
-## 4. Automated Testing
-
-Run the full automated test suite (28 tests covering backend validation, accessibility tags, authentication, CSRF, and complete E2E flow):
-
-```bash
-npm test
-```
-
-### Test Coverage:
-- **Backend Validation**: Required fields, name length, phone format, email format, destination whitelist, study level whitelist, consent validation, honeypot bot trap.
-- **Security & Authentication**: Unauthenticated route blocking (401), timing-safe password verification, session cookie attributes (`HttpOnly`, `SameSite=Strict`), CSRF protection, and session revocation upon logout.
-- **Status Workflow**: Transitions across `New` → `Contacted` → `Appointment booked` → `Closed`.
-- **Database Isolation**: Tests execute against an isolated database (`:memory:` or test file) to ensure demonstration data is never polluted.
-- **E2E Scenario Walkthrough**: Verifies the entire Section 17 scenario from homepage visit to owner sign-out.
-
----
-
-## 5. Client Demonstration Walkthrough Script
+## 4. Client Demonstration Walkthrough Script
 
 Use this step-by-step walkthrough when presenting the website to prospective clients (e.g. education consultancies):
 
@@ -129,7 +111,7 @@ Use this step-by-step walkthrough when presenting the website to prospective cli
 
 ---
 
-## 6. Security & Privacy Architecture
+## 5. Security & Privacy Architecture
 
 - **Content Security Policy (CSP)**: Strict headers via `helmet` restricting scripts, objects, and framing (`frame-ancestors: none`).
 - **CSRF Defense**: State-changing API endpoints (`PATCH`, `DELETE`, `POST /logout`) verify custom headers (`X-Requested-With`) in tandem with `SameSite=Strict` cookies.
@@ -140,7 +122,7 @@ Use this step-by-step walkthrough when presenting the website to prospective cli
 
 ---
 
-## 7. Configuration Guide
+## 6. Configuration Guide
 
 | Variable | Required | Description |
 |---|---|---|
@@ -154,7 +136,7 @@ Use this step-by-step walkthrough when presenting the website to prospective cli
 
 ---
 
-## 8. Production Deployment Notes
+## 7. Production Deployment Notes
 
 When deploying to a production host (e.g. Render, Railway, DigitalOcean, or an Indian cloud VPS):
 1. **Enable HTTPS**: Ensure `NODE_ENV=production` is set so cookies automatically enforce the `Secure` flag.

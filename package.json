@@ -5,8 +5,7 @@
   "description": "Clearly labeled fictional education consultancy website demo",
   "scripts": {
     "start": "node server.js",
-    "dev": "node --watch server.js",
-    "test": "node --test"
+    "dev": "node --watch server.js"
   },
   "engines": {
     "node": ">=20"
