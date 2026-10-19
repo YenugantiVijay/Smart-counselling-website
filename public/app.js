@@ -11,6 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const yearEl = $('#year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  const API_BASE = (window.location.port && window.location.port !== '3000' && (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost'))
+    ? 'http://localhost:3000'
+    : '';
+
   // ----------------------------------------------------
   // 1. Mobile Navigation
   // ----------------------------------------------------
@@ -295,7 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       try {
-        const response = await fetch('/api/enquiries', {
+        const response = await fetch(`${API_BASE}/api/enquiries`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -329,7 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Check WhatsApp configuration via config API
         try {
-          const cfgRes = await fetch('/api/config');
+          const cfgRes = await fetch(`${API_BASE}/api/config`);
           const config = await cfgRes.json();
 
           if (config.whatsappConfigured && config.whatsappNumber) {

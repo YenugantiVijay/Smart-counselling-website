@@ -9,7 +9,10 @@ const { notifyOwner } = require('./notifications');
 
 const isProduction = process.env.NODE_ENV === 'production';
 const PORT = Number(process.env.PORT || 3000);
-const sessionSecret = process.env.SESSION_SECRET || '';
+const DEFAULT_SESSION_SECRET = 'f2cf251322a29221df84ef140cbc75b89d5d4bc842b9e371ff41296e153f5ad16d8031fee7f85ceffff12eb81feb1ec3';
+const DEFAULT_ADMIN_SALT = '99c706d754c347d91006cdc7a95c0f710155a627615e936e';
+const DEFAULT_ADMIN_HASH = '62a0ebe66e2c6b511fb2eed90459d3ed6c27241afd6f61e2adfb773655b64a4bbf71615359ed5b38b10a4750d29cfae6e513b3d6282348676b5563fcf3b4b47a';
+const sessionSecret = process.env.SESSION_SECRET || DEFAULT_SESSION_SECRET;
 
 // Initialize database
 const db = createDatabase(process.env.DB_PATH);
@@ -17,6 +20,21 @@ seedSampleData(db);
 
 const app = express();
 app.disable('x-powered-by');
+
+// Local Development CORS support (e.g. for VS Code Live Server)
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (origin && (/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin))) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Requested-With, X-Session-Token, Authorization');
+    if (req.method === 'OPTIONS') {
+      return res.sendStatus(204);
+    }
+  }
+  next();
+});
 
 // Security headers with Helmet
 app.use(helmet({
@@ -67,8 +85,8 @@ function safeEqual(a, b) {
 }
 
 function passwordMatches(password) {
-  const hash = process.env.ADMIN_PASSWORD_HASH || '';
-  const salt = process.env.ADMIN_PASSWORD_SALT || '';
+  const hash = process.env.ADMIN_PASSWORD_HASH || DEFAULT_ADMIN_HASH;
+  const salt = process.env.ADMIN_PASSWORD_SALT || DEFAULT_ADMIN_SALT;
   if (!hash || !salt || typeof password !== 'string') return false;
   try {
     const derived = crypto.scryptSync(password, salt, 64).toString('hex');
@@ -79,14 +97,30 @@ function passwordMatches(password) {
 }
 
 function getSession(req) {
+  if (!sessionSecret) return null;
+
+  let token = null;
+
+  // 1. Check HttpOnly cookie
   const cookieHeader = req.headers.cookie;
-  if (!cookieHeader || !sessionSecret) return null;
+  if (cookieHeader) {
+    const cookies = cookieHeader.split(';').map(v => v.trim());
+    const sessionCookie = cookies.find(v => v.startsWith('sc_demo_session='));
+    if (sessionCookie) {
+      token = sessionCookie.split('=')[1];
+    }
+  }
 
-  const cookies = cookieHeader.split(';').map(v => v.trim());
-  const sessionCookie = cookies.find(v => v.startsWith('sc_demo_session='));
-  if (!sessionCookie) return null;
+  // 2. Check X-Session-Token or Authorization Bearer header (for Live Server cross-origin development)
+  if (!token) {
+    const headerToken = req.headers['x-session-token'];
+    if (headerToken && typeof headerToken === 'string') {
+      token = headerToken.trim();
+    } else if (req.headers.authorization && typeof req.headers.authorization === 'string') {
+      token = req.headers.authorization.replace(/^Bearer\s+/i, '').trim();
+    }
+  }
 
-  const token = sessionCookie.split('=')[1];
   if (!token) return null;
 
   const record = sessions.get(token);
@@ -236,11 +270,13 @@ app.post('/api/admin/login', loginLimiter, (req, res) => {
   const username = cleanString(req.body?.username, 80);
   const password = typeof req.body?.password === 'string' ? req.body.password : '';
 
+  const expectedAdmin = process.env.ADMIN_USERNAME || 'owner';
+
   if (
-    !process.env.ADMIN_USERNAME ||
+    !expectedAdmin ||
     !sessionSecret ||
     !passwordMatches(password) ||
-    !safeEqual(username, process.env.ADMIN_USERNAME)
+    !safeEqual(username, expectedAdmin)
   ) {
     return res.status(401).json({ error: 'Sign-in failed. Please check your credentials.' });
   }
@@ -257,7 +293,7 @@ app.post('/api/admin/login', loginLimiter, (req, res) => {
     `sc_demo_session=${token}; HttpOnly; SameSite=Strict; Path=/; Max-Age=28800${secureFlag}`
   );
 
-  res.json({ success: true, username });
+  res.json({ success: true, username, token });
 });
 
 // Admin logout
@@ -270,6 +306,11 @@ app.post('/api/admin/logout', (req, res) => {
       const token = sessionCookie.split('=')[1];
       if (token) sessions.delete(token);
     }
+  }
+
+  const headerToken = req.headers['x-session-token'] || (req.headers.authorization && req.headers.authorization.replace(/^Bearer\s+/i, '').trim());
+  if (headerToken && sessions.has(headerToken)) {
+    sessions.delete(headerToken);
   }
 
   const secureFlag = isProduction ? '; Secure' : '';

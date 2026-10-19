@@ -18,6 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let allLeads = [];
 
+  const API_BASE = (window.location.port && window.location.port !== '3000' && (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost'))
+    ? 'http://localhost:3000'
+    : '';
+
   // Helper for authenticated API calls with CSRF header
   async function api(url, options = {}) {
     const defaultHeaders = {
@@ -25,8 +29,14 @@ document.addEventListener('DOMContentLoaded', () => {
       'X-Requested-With': 'XMLHttpRequest'
     };
 
-    const response = await fetch(url, {
-      credentials: 'same-origin',
+    const sessionToken = sessionStorage.getItem('sc_demo_session_token');
+    if (sessionToken) {
+      defaultHeaders['X-Session-Token'] = sessionToken;
+      defaultHeaders['Authorization'] = `Bearer ${sessionToken}`;
+    }
+
+    const response = await fetch(`${API_BASE}${url}`, {
+      credentials: API_BASE ? 'include' : 'same-origin',
       ...options,
       headers: {
         ...defaultHeaders,
@@ -238,9 +248,13 @@ document.addEventListener('DOMContentLoaded', () => {
       updateMetrics(allLeads);
       renderLeads();
     } catch (err) {
+      sessionStorage.removeItem('sc_demo_session_token');
       loginPanel.hidden = false;
       dashboard.hidden = true;
       logoutButton.hidden = true;
+      if (loginError && err && err.message) {
+        loginError.textContent = err.message;
+      }
     }
   }
 
@@ -257,10 +271,13 @@ document.addEventListener('DOMContentLoaded', () => {
       submitBtn.textContent = 'Verifying…';
 
       try {
-        await api('/api/admin/login', {
+        const res = await api('/api/admin/login', {
           method: 'POST',
           body: JSON.stringify({ username, password })
         });
+        if (res.token) {
+          sessionStorage.setItem('sc_demo_session_token', res.token);
+        }
         $('#password').value = '';
         await loadDashboard();
       } catch (err) {
@@ -272,6 +289,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Handle Auto-Fill Demo Credentials
+  const fillDemoCredsBtn = $('#fill-demo-creds-btn');
+  if (fillDemoCredsBtn) {
+    fillDemoCredsBtn.addEventListener('click', () => {
+      const usernameInput = $('#username');
+      const passwordInput = $('#password');
+      if (usernameInput) usernameInput.value = 'owner';
+      if (passwordInput) passwordInput.value = 'DemoAdmin2026!';
+      const submitBtn = $('#login-button');
+      if (submitBtn) submitBtn.focus();
+    });
+  }
+
   // Handle Logout
   if (logoutButton) {
     logoutButton.addEventListener('click', async () => {
@@ -280,6 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch {
         // Continue logout locally even if network failed
       }
+      sessionStorage.removeItem('sc_demo_session_token');
       dashboard.hidden = true;
       logoutButton.hidden = true;
       loginPanel.hidden = false;
