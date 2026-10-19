@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Demonstration website for an education consultancy. Explore study destinations, check academic document guidelines, ask the approved FAQ assistant, and request a counselling appointment.">
+  <title>Smart Counselling Website — Fictional Education Consultancy Demo</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <!-- Google Material Symbols & Font Awesome Kit -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <script src="https://kit.fontawesome.com/a3c03c43eb.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Demo Disclosure Banner -->
+  <div class="demo-banner" role="region" aria-label="Demonstration Notice">
+    <strong>DEMO WEBSITE</strong> · Fictional education consultancy for portfolio demonstration · All testimonials, statistics, and examples are illustrative
+  </div>
+
+  <!-- Header & Navigation -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="/" aria-label="Smart Counselling Home">
+        <span class="brand-mark" aria-hidden="true"><i class="fa-solid fa-graduation-cap"></i></span>
+        <span class="brand-text">Smart<span class="brand-light">Counselling</span></span>
+      </a>
+
+      <!-- Mobile Navigation Toggle -->
+      <button id="mobile-toggle" class="mobile-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation menu">
+        <span class="bar bar-1"></span>
+        <span class="bar bar-2"></span>
+        <span class="bar bar-3"></span>
+      </button>
+
+      <!-- Main Navigation -->
+      <nav id="primary-nav" class="site-nav" aria-label="Main navigation">
+        <ul class="nav-list">
+          <li><a href="#services" class="nav-link"><i class="fa-solid fa-shapes nav-icon" aria-hidden="true"></i> Services</a></li>
+          <li><a href="#destinations" class="nav-link"><i class="fa-solid fa-globe nav-icon" aria-hidden="true"></i> Destinations</a></li>
+          <li><a href="#process" class="nav-link"><i class="fa-solid fa-route nav-icon" aria-hidden="true"></i> Process</a></li>
+          <li><a href="#testimonials" class="nav-link"><i class="fa-solid fa-star nav-icon" aria-hidden="true"></i> Sample Reviews</a></li>
+          <li><a href="#faq" class="nav-link"><i class="fa-solid fa-circle-question nav-icon" aria-hidden="true"></i> FAQ Assistant</a></li>
+          <li><a href="#enquiry" class="button button-nav">Request Counselling <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero Section -->
+    <section class="hero section-wrap">
+      <div class="hero-copy">
+        <!-- Item 1: Exactly aligned badge row -->
+        <div class="badge-row">
+          <span class="demo-tag"><i class="fa-solid fa-flask" aria-hidden="true"></i> Portfolio Demonstration</span>
+          <span class="eyebrow"><span class="pulse" aria-hidden="true"></span> STUDENT-FIRST GUIDANCE</span>
+        </div>
+        <h1>Make your international study plan feel <em>achievable.</em></h1>
+        <p class="hero-lede">
+          Get transparent guidance on course options, admission requirements, and academic document preparation — without pressure or false promises.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#enquiry">
+            <span>Request Counselling</span>
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </a>
+          <a class="button button-outline" href="#faq">
+            <i class="fa-solid fa-comments" aria-hidden="true"></i>
+            <span>Ask a Question</span>
+          </a>
+        </div>
+        <div class="trust-row">
+          <div class="trust-item">
+            <span class="trust-icon" aria-hidden="true"><i class="fa-solid fa-circle-check"></i></span>
+            <div>
+              <b>Objective Guidance</b>
+              <small>Realistic advice, never false guarantees</small>
+            </div>
+          </div>
+          <div class="trust-item">
+            <span class="trust-icon" aria-hidden="true"><i class="fa-solid fa-clipboard-check"></i></span>
+            <div>
+              <b>Clear Document Checklists</b>
+              <small>Know what to gather before applying</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 2: Hero Visual with Real Unsplash Photo and Floating Animated Cards in Front -->
+      <div class="hero-visual-wrapper">
+        <div class="hero-visual" aria-label="International students collaborating and preparing for global education" role="img">
+          <img class="hero-photo" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80" alt="Students collaborating and studying for international education" loading="eager" width="600" height="460">
+          <div class="hero-overlay"></div>
+        </div>
+        <!-- Floating Animated Cards with High Z-Index -->
+        <div class="hero-card card-top">
+          <span class="card-icon" aria-hidden="true"><i class="fa-solid fa-map-location-dot"></i></span>
+          <div>
+            <b>Step-by-Step Pathway</b>
+            <small>Discover · Prepare · Submit</small>
+          </div>
+        </div>
+        <div class="hero-card card-bottom">
+          <span class="check-bubble" aria-hidden="true"><i class="fa-solid fa-circle-check"></i></span>
+          <div>
+            <b>Start With Clarity</b>
+            <small>Talk to staff before committing</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Item 4: Continuous Horizontal Scrolling Ticker (Marquee) -->
+    <section class="marquee-strip" aria-label="Highlights and partner hubs">
+      <div class="marquee-track">
+        <div class="marquee-content">
+          <span><i class="fa-solid fa-landmark"></i> UK Russell Group Universities</span>
+          <span class="marquee-dot">•</span>
+          <span><i class="fa-solid fa-building-columns"></i> US State & Ivy League Institutions</span>
+          <span class="marquee-dot">•</span>
+          <span><i class="fa-solid fa-maple-leaf"></i> Canadian DLI Colleges & Universities</span>
+          <span class="marquee-dot">•</span>
+          <span><i class="fa-solid fa-graduation-cap"></i> Australian Group of Eight</span>
+          <span class="marquee-dot">•</span>
+          <span><i class="fa-solid fa-earth-europe"></i> European Public Degree Programs</span>
+          <span class="marquee-dot">•</span>
+          <span><i class="fa-solid fa-shield-halved"></i> 100% Free Initial Assessment</span>
+          <span class="marquee-dot">•</span>
+          <span><i class="fa-solid fa-scale-balanced"></i> Strict No-Commission Bias Policy</span>
+          <span class="marquee-dot">•</span>
+        </div>
+        <!-- Duplicate for infinite seamless scroll -->
+        <div class="marquee-content" aria-hidden="true">
+          <span><i class="fa-solid fa-landmark"></i> UK Russell Group Universities</span>
+          <span class="marquee-dot">•</span>
+          <span><i class="fa-solid fa-building-columns"></i> US State & Ivy League Institutions</span>
+          <span class="marquee-dot">•</span>
+          <span><i class="fa-solid fa-maple-leaf"></i> Canadian DLI Colleges & Universities</span>
+          <span class="marquee-dot">•</span>
+          <span><i class="fa-solid fa-graduation-cap"></i> Australian Group of Eight</span>
+          <span class="marquee-dot">•</span>
+          <span><i class="fa-solid fa-earth-europe"></i> European Public Degree Programs</span>
+          <span class="marquee-dot">•</span>
+          <span><i class="fa-solid fa-shield-halved"></i> 100% Free Initial Assessment</span>
+          <span class="marquee-dot">•</span>
+          <span><i class="fa-solid fa-scale-balanced"></i> Strict No-Commission Bias Policy</span>
+          <span class="marquee-dot">•</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Principles / Trust Proof Strip -->
+    <section class="proof-strip" aria-label="Core Counselling Principles">
+      <div class="proof-strip-inner">
+        <article class="proof-card proof-card--discovery" tabindex="0">
+          <div class="proof-card-accent" aria-hidden="true"></div>
+          <div class="proof-icon-box" aria-hidden="true">
+            <i class="fa-solid fa-compass"></i>
+          </div>
+          <div class="proof-card-body">
+            <div class="proof-card-header">
+              <h3 class="proof-card-title">Personalised Discovery</h3>
+              <span class="proof-card-step">01</span>
+            </div>
+            <p class="proof-card-desc">Aligned to your career goals</p>
+          </div>
+        </article>
+
+        <article class="proof-card proof-card--guidance" tabindex="0">
+          <div class="proof-card-accent" aria-hidden="true"></div>
+          <div class="proof-icon-box" aria-hidden="true">
+            <i class="fa-solid fa-clipboard-check"></i>
+          </div>
+          <div class="proof-card-body">
+            <div class="proof-card-header">
+              <h3 class="proof-card-title">Document Guidance</h3>
+              <span class="proof-card-step">02</span>
+            </div>
+            <p class="proof-card-desc">Structured checklists &amp; review</p>
+          </div>
+        </article>
+
+        <article class="proof-card proof-card--transparency" tabindex="0">
+          <div class="proof-card-accent" aria-hidden="true"></div>
+          <div class="proof-icon-box" aria-hidden="true">
+            <i class="fa-solid fa-handshake"></i>
+          </div>
+          <div class="proof-card-body">
+            <div class="proof-card-header">
+              <h3 class="proof-card-title">Transparent Approach</h3>
+              <span class="proof-card-step">03</span>
+            </div>
+            <p class="proof-card-desc">No hidden fees or unexpected costs</p>
+          </div>
+        </article>
+
+        <article class="proof-card proof-card--ethics" tabindex="0">
+          <div class="proof-card-accent" aria-hidden="true"></div>
+          <div class="proof-icon-box" aria-hidden="true">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div class="proof-card-body">
+            <div class="proof-card-header">
+              <h3 class="proof-card-title">Ethical Counselling</h3>
+              <span class="proof-card-step">04</span>
+            </div>
+            <p class="proof-card-desc">Institutional decisions remain independent</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-wrap section-space">
+      <div class="section-heading">
+        <p class="eyebrow"><i class="fa-solid fa-sparkles" aria-hidden="true"></i> HOW WE CAN HELP</p>
+        <h2>A clear path from <em>curiosity to application.</em></h2>
+        <p class="section-subtext">
+          Explore fictional example services designed to guide students systematically through their study-abroad planning.
+        </p>
+      </div>
+
+      <div class="service-grid">
+        <article class="service-card">
+          <span class="service-icon lavender" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-location"></i></span>
+          <h3>Course & Destination Discovery</h3>
+          <p>Compare study locations, degree structures, and intake periods to narrow down universities matching your profile.</p>
+          <a class="card-link" href="#destinations">
+            <span>Explore destinations</span>
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </article>
+
+        <article class="service-card">
+          <span class="service-icon mint" aria-hidden="true"><i class="fa-solid fa-file-signature"></i></span>
+          <h3>Application Preparation Guidance</h3>
+          <p>Understand institutional entry criteria, application deadlines, and structured step-by-step submission timelines.</p>
+          <a class="card-link" href="#enquiry">
+            <span>Plan an application</span>
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </article>
+
+        <article class="service-card">
+          <span class="service-icon peach" aria-hidden="true"><i class="fa-solid fa-list-check"></i></span>
+          <h3>Academic Document Checklists</h3>
+          <p>Receive comprehensive checklists for transcripts, statements of purpose, reference letters, and language exams.</p>
+          <a class="card-link" href="#faq">
+            <span>Check common documents</span>
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </article>
+
+        <article class="service-card">
+          <span class="service-icon sage" aria-hidden="true"><i class="fa-solid fa-calendar-check"></i></span>
+          <h3>Counselling Appointment Requests</h3>
+          <p>Book a dedicated consultation with an education advisor to review your background and map out your next steps.</p>
+          <a class="card-link" href="#enquiry">
+            <span>Request a session</span>
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </article>
+      </div>
+      <p class="fictional-notice">Fictional demonstration: In a live business deployment, specific consultancy agreements and service boundaries are agreed upon directly with the student.</p>
+    </section>
+
+    <!-- Study Destinations Section -->
+    <section id="destinations" class="destinations-section">
+      <div class="section-wrap section-space">
+        <div class="section-heading">
+          <p class="eyebrow"><i class="fa-solid fa-earth-americas" aria-hidden="true"></i> POPULAR DESTINATIONS</p>
+          <h2>Start with a country. <em>Keep your options open.</em></h2>
+          <p class="section-subtext">
+            Click on any destination below to start an enquiry pre-filled with that country choice.
+          </p>
+        </div>
+
+        <!-- Item 3: Destination cards with Select and Arrow strictly side by side -->
+        <div class="destination-grid">
+          <article class="destination-card uk" data-destination="UK" role="button" tabindex="0" aria-label="Select United Kingdom destination">
+            <span class="destination-code" aria-hidden="true"><i class="fa-solid fa-landmark"></i> UK</span>
+            <div class="destination-info">
+              <h3>United Kingdom</h3>
+              <p>Undergraduate · Postgraduate · Foundation</p>
+            </div>
+            <span class="select-action" aria-hidden="true">
+              <span>Select</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </span>
+          </article>
+
+          <article class="destination-card usa" data-destination="USA" role="button" tabindex="0" aria-label="Select United States destination">
+            <span class="destination-code" aria-hidden="true"><i class="fa-solid fa-building-columns"></i> USA</span>
+            <div class="destination-info">
+              <h3>United States</h3>
+              <p>Bachelors · Masters · STEM Programs</p>
+            </div>
+            <span class="select-action" aria-hidden="true">
+              <span>Select</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </span>
+          </article>
+
+          <article class="destination-card canada" data-destination="Canada" role="button" tabindex="0" aria-label="Select Canada destination">
+            <span class="destination-code" aria-hidden="true"><i class="fa-solid fa-leaf"></i> CA</span>
+            <div class="destination-info">
+              <h3>Canada</h3>
+              <p>University Degrees · PG Diplomas · Colleges</p>
+            </div>
+            <span class="select-action" aria-hidden="true">
+              <span>Select</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </span>
+          </article>
+
+          <article class="destination-card australia" data-destination="Australia" role="button" tabindex="0" aria-label="Select Australia destination">
+            <span class="destination-code" aria-hidden="true"><i class="fa-solid fa-graduation-cap"></i> AU</span>
+            <div class="destination-info">
+              <h3>Australia</h3>
+              <p>Undergraduate · Masters · Research</p>
+            </div>
+            <span class="select-action" aria-hidden="true">
+              <span>Select</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </span>
+          </article>
+
+          <article class="destination-card europe" data-destination="Europe" role="button" tabindex="0" aria-label="Select Europe destination">
+            <span class="destination-code" aria-hidden="true"><i class="fa-solid fa-earth-europe"></i> EU</span>
+            <div class="destination-info">
+              <h3>Europe</h3>
+              <p>Germany · Ireland · Netherlands · France</p>
+            </div>
+            <span class="select-action" aria-hidden="true">
+              <span>Select</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </span>
+          </article>
+
+          <article class="destination-card unsure" data-destination="Not sure yet" role="button" tabindex="0" aria-label="Select Not sure yet destination">
+            <span class="destination-code" aria-hidden="true"><i class="fa-solid fa-compass"></i> ?</span>
+            <div class="destination-info">
+              <h3>Not Sure Yet?</h3>
+              <p>Explore options based on your goals & budget</p>
+            </div>
+            <span class="select-action" aria-hidden="true">
+              <span>Select</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process / Trust Section -->
+    <section id="process" class="section-wrap section-space">
+      <div class="split-panel">
+        <div class="panel-intro">
+          <p class="eyebrow"><i class="fa-solid fa-arrow-trend-up" aria-hidden="true"></i> A TRANSPARENT PROCESS</p>
+          <h2>Less guessing.<br><em>More confidence.</em></h2>
+          <p>
+            Our step-by-step workflow ensures you always know what information is needed, what questions to ask, and where your application stands.
+          </p>
+          <a class="button button-light" href="#enquiry">
+            <span>Start Your Enquiry</span>
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </div>
+        <ol class="steps">
+          <li>
+            <span class="step-num" aria-hidden="true">01</span>
+            <div>
+              <b>Share Your Academic Goals</b>
+              <p>Tell us your target study level, preferred destination, and academic background.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-num" aria-hidden="true">02</span>
+            <div>
+              <b>Review Options & Requirements</b>
+              <p>Get a realistic overview of intake deadlines, entry requirements, and checklist items.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-num" aria-hidden="true">03</span>
+            <div>
+              <b>Staff Follow-Up & Consultation</b>
+              <p>Your enquiry is securely recorded so an advisor can arrange a focused discussion.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Fictional Sample Testimonials Section -->
+    <section id="testimonials" class="section-wrap section-space testimonial-section">
+      <div class="section-heading">
+        <p class="eyebrow"><i class="fa-solid fa-quote-left" aria-hidden="true"></i> SAMPLE TESTIMONIALS</p>
+        <h2>Designed around <em>student confidence.</em></h2>
+        <div class="sample-badge">
+          <strong>ILLUSTRATIVE SAMPLES:</strong> The following reviews are fictional placeholders created for layout demonstration. They do not represent real clients or guaranteed outcomes.
+        </div>
+      </div>
+
+      <div class="quote-grid">
+        <blockquote>
+          <span class="quote-mark" aria-hidden="true">“</span>
+          <p>The structured checklist helped me organise my academic documents well in advance of the university deadlines.</p>
+          <footer>
+            <span class="avatar" aria-hidden="true">S</span>
+            <div>
+              <b>Sample Student A</b>
+              <small>Fictional illustrative profile · UK Masters</small>
+            </div>
+          </footer>
+        </blockquote>
+
+        <blockquote>
+          <span class="quote-mark" aria-hidden="true">“</span>
+          <p>I appreciated having clear answers on fee transparency and knowing exactly what questions to research next.</p>
+          <footer>
+            <span class="avatar avatar-two" aria-hidden="true">R</span>
+            <div>
+              <b>Sample Student B</b>
+              <small>Fictional illustrative profile · Canada PG Diploma</small>
+            </div>
+          </footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- FAQ Assistant Section -->
+    <section id="faq" class="faq-section">
+      <div class="section-wrap section-space faq-layout">
+        <div class="faq-intro">
+          <p class="eyebrow"><i class="fa-solid fa-headset" aria-hidden="true"></i> INSTANT ASSISTANT</p>
+          <h2>Have questions?<br><em>Get clear answers.</em></h2>
+          <p>
+            This interactive assistant provides answers based on an <strong>approved, deterministic knowledge base</strong>. It does not invent prices, make admission promises, or provide speculative visa decisions.
+          </p>
+          <div class="faq-disclaimer">
+            <strong>Honest Boundaries:</strong> If your question is not covered in our approved guidance, the assistant will acknowledge uncertainty and direct you to speak with qualified staff.
+          </div>
+        </div>
+
+        <div class="chat-panel">
+          <div class="chat-head">
+            <div class="bot-avatar" aria-hidden="true"><i class="fa-solid fa-robot"></i></div>
+            <div>
+              <b>Smart FAQ Assistant</b>
+              <small><span class="online-dot" aria-hidden="true"></span> Approved knowledge base</small>
+            </div>
+            <span class="demo-chip">RULE-BASED DEMO</span>
+          </div>
+
+          <!-- Chat Conversation Log -->
+          <div id="chat-log" class="chat-log" role="log" aria-live="polite" aria-label="Assistant conversation history">
+            <div class="chat-message bot">
+              <span class="message-label">ASSISTANT</span>
+              Hello! I can answer questions from our approved guidelines on services, fees, academic documents, destinations, and appointments. How can I help you today?
+            </div>
+          </div>
+
+          <!-- Suggested Question Chips -->
+          <div class="suggested-questions" role="group" aria-label="Suggested questions">
+            <button type="button" class="chip-button" data-question="What services do you offer?"><i class="fa-solid fa-shapes"></i> What services do you offer?</button>
+            <button type="button" class="chip-button" data-question="What are your fees?"><i class="fa-solid fa-tag"></i> What are your fees?</button>
+            <button type="button" class="chip-button" data-question="Which documents should I prepare?"><i class="fa-solid fa-file-lines"></i> Which documents should I prepare?</button>
+            <button type="button" class="chip-button" data-question="How do I book an appointment?"><i class="fa-solid fa-calendar-check"></i> How do I book an appointment?</button>
+            <button type="button" class="chip-button" data-question="Can you guarantee my visa or admission?"><i class="fa-solid fa-shield-halved"></i> Can you guarantee my visa?</button>
+          </div>
+
+          <!-- Chat Input Form -->
+          <form id="chat-form" class="chat-input-row">
+            <label class="sr-only" for="chat-question">Type your question for the assistant</label>
+            <input id="chat-question" name="question" maxlength="300" placeholder="Ask about services, fees, documents, or destinations…" autocomplete="off" required>
+            <button class="send-button" type="submit" aria-label="Send question">
+              <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+            </button>
+          </form>
+          <p class="chat-footnote">Deterministic FAQ matching based on verified demonstration rules. Not a generative AI.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Smart Enquiry Form Section -->
+    <section id="enquiry" class="section-wrap section-space enquiry-section">
+      <div class="enquiry-intro">
+        <p class="eyebrow"><i class="fa-solid fa-envelope-open-text" aria-hidden="true"></i> CONNECT WITH US</p>
+        <h2>Ready for personalised <em>counselling?</em></h2>
+        <p>
+          Submit your details to request an appointment. We collect only what is necessary to begin a helpful conversation.
+        </p>
+
+        <div class="privacy-note">
+          <span class="privacy-icon" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></span>
+          <div>
+            <b>Privacy & Minimal Data Collection</b>
+            <p>
+              We never request passport numbers, banking credentials, or sensitive documents in this initial enquiry. Your details are saved in a local demonstration database for the owner dashboard.
+            </p>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <span class="contact-icon" aria-hidden="true"><i class="fa-brands fa-whatsapp"></i></span>
+          <div>
+            <b>Instant WhatsApp Follow-Up</b>
+            <p>
+              After submitting, you can launch a pre-formatted WhatsApp message containing your enquiry reference number to continue the conversation.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <div class="form-card-heading">
+          <span class="form-step">STEP 01 / ENQUIRY</span>
+          <h3>Tell us about your study plans</h3>
+          <p>Fields marked with an asterisk (<span class="req">*</span>) are required.</p>
+        </div>
+
+        <!-- Submission Status Live Region -->
+        <div id="form-status" class="status-announcer" role="status" aria-live="polite"></div>
+
+        <form id="enquiry-form" novalidate>
+          <div class="field-grid">
+            <div class="field">
+              <label for="name">Full Name <span class="req">*</span></label>
+              <input id="name" name="name" type="text" autocomplete="name" minlength="2" maxlength="80" required aria-describedby="name-error" placeholder="e.g. Priya Sharma">
+              <small class="field-error" id="name-error" role="alert"></small>
+            </div>
+
+            <div class="field">
+              <label for="phone">Phone Number <span class="req">*</span></label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="20" required aria-describedby="phone-error" placeholder="+91 98765 43210">
+              <small class="field-error" id="phone-error" role="alert"></small>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="email">Email Address <span class="optional">(optional)</span></label>
+            <input id="email" name="email" type="email" autocomplete="email" maxlength="120" aria-describedby="email-error" placeholder="name@example.com">
+            <small class="field-error" id="email-error" role="alert"></small>
+          </div>
+
+          <div class="field-grid">
+            <div class="field">
+              <label for="destination">Study Destination <span class="req">*</span></label>
+              <select id="destination" name="destination" required aria-describedby="destination-error">
+                <option value="">Select a destination</option>
+                <option value="UK">United Kingdom (UK)</option>
+                <option value="USA">United States (USA)</option>
+                <option value="Canada">Canada</option>
+                <option value="Australia">Australia</option>
+                <option value="Europe">Europe</option>
+                <option value="Not sure yet">Not sure yet</option>
+              </select>
+              <small class="field-error" id="destination-error" role="alert"></small>
+            </div>
+
+            <div class="field">
+              <label for="studyLevel">Study Level <span class="req">*</span></label>
+              <select id="studyLevel" name="studyLevel" required aria-describedby="studyLevel-error">
+                <option value="">Select study level</option>
+                <option value="Undergraduate">Undergraduate (Bachelors)</option>
+                <option value="Postgraduate">Postgraduate (Masters)</option>
+                <option value="Diploma">Diploma / Post-Degree Certificate</option>
+                <option value="Language course">Language course</option>
+                <option value="Not sure yet">Not sure yet</option>
+              </select>
+              <small class="field-error" id="studyLevel-error" role="alert"></small>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="message">How can we assist you? <span class="optional">(optional)</span></label>
+            <textarea id="message" name="message" rows="3" maxlength="1000" placeholder="Mention your academic background, target intake, or preferred cities…"></textarea>
+          </div>
+
+          <!-- Honeypot Field (Abuse Protection) -->
+          <div class="honeypot" aria-hidden="true">
+            <label for="website">Please leave this field empty</label>
+            <input id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <!-- Consent Checkbox -->
+          <div class="field consent-wrap">
+            <label class="consent-label" for="consent">
+              <input type="checkbox" id="consent" name="consent" required aria-describedby="consent-error">
+              <span>I consent to being contacted by the consultancy team regarding this education enquiry. <span class="req">*</span></span>
+            </label>
+            <small class="field-error" id="consent-error" role="alert"></small>
+          </div>
+
+          <button id="submit-enquiry" class="button button-primary submit-button" type="submit">
+            <span>Send Enquiry</span>
+            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+          </button>
+          <p class="form-footnote">Demonstration website only · No payment is requested · No admission guarantees</p>
+        </form>
+
+        <!-- Success Panel (shown after backend confirms storage) -->
+        <div id="enquiry-success" class="success-panel" hidden role="region" aria-label="Enquiry confirmation" tabindex="-1">
+          <div class="success-icon" aria-hidden="true"><i class="fa-solid fa-circle-check"></i></div>
+          <h3>Enquiry Received Successfully!</h3>
+          <p id="success-copy">Your demo enquiry has been safely recorded in the database.</p>
+          <div id="whatsapp-container" class="whatsapp-container">
+            <a id="whatsapp-link" class="button button-whatsapp" href="#" target="_blank" rel="noopener noreferrer">
+              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+              <span>Continue on WhatsApp</span>
+              <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+            </a>
+            <p id="whatsapp-note" class="whatsapp-note" hidden></p>
+          </div>
+          <button id="new-enquiry" class="button button-secondary-action" type="button">
+            <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
+            <span>Submit Another Enquiry</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing Call to Action -->
+    <section class="closing-cta">
+      <div class="section-wrap closing-inner">
+        <div>
+          <p class="eyebrow closing-eyebrow"><i class="fa-solid fa-compass" aria-hidden="true"></i> YOUR JOURNEY AWAITS</p>
+          <h2>One conversation can clarify your entire roadmap.</h2>
+        </div>
+        <a class="button button-light" href="#enquiry">
+          <span>Request Free Consultation</span>
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand-col">
+        <a class="brand footer-brand" href="/" aria-label="Smart Counselling Home">
+          <span class="brand-mark" aria-hidden="true"><i class="fa-solid fa-graduation-cap"></i></span>
+          <span>Smart<span class="brand-light">Counselling</span></span>
+        </a>
+        <p class="footer-desc">
+          A showcase education consultancy website engineered for local businesses. Fictional demonstration project.
+        </p>
+      </div>
+
+      <div class="footer-links-col">
+        <b>Navigation</b>
+        <ul>
+          <li><a href="#services"><i class="fa-solid fa-angle-right" aria-hidden="true"></i> Services</a></li>
+          <li><a href="#destinations"><i class="fa-solid fa-angle-right" aria-hidden="true"></i> Study Destinations</a></li>
+          <li><a href="#process"><i class="fa-solid fa-angle-right" aria-hidden="true"></i> Consultation Process</a></li>
+          <li><a href="#faq"><i class="fa-solid fa-angle-right" aria-hidden="true"></i> FAQ Assistant</a></li>
+          <li><a href="#enquiry"><i class="fa-solid fa-angle-right" aria-hidden="true"></i> Enquiry Form</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-meta-col">
+        <b>Administration</b>
+        <ul>
+          <li><a href="/admin.html"><i class="fa-solid fa-lock" aria-hidden="true"></i> Owner Dashboard</a></li>
+          <li><a href="#main"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i> Back to top ↑</a></li>
+        </ul>
+        <div class="footer-note">
+          Notice: This is a demonstration website. No client relationships, official credentials, or institutional partnerships exist.
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <small>© <span id="year">2026</span> Smart Counselling Website. Portfolio Demo. All rights reserved.</small>
+    </div>
+  </footer>
+</body>
+</html>

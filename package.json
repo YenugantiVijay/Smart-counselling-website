@@ -1,0 +1,21 @@
+{
+  "name": "smart-counselling-website-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Clearly labeled fictional education consultancy website demo",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
+    "dotenv": "^16.4.7"
+  },
+  "devDependencies": {}
+}
